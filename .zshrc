@@ -1,11 +1,8 @@
-export TERM="xterm-256color"
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 # zplug plugins
 source ~/.zplug/init.zsh
-zplug "chrissicool/zsh-256color"
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
