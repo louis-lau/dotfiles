@@ -4,7 +4,7 @@ scriptPath="$( cd "$(dirname "$0")" ; pwd -P )";
 
 # Install zsh and other defaults
 sudo apt-get update
-sudo apt-get install zsh nano htop -y
+sudo apt-get install zsh nano htop python curl -y
 chsh -s $(which zsh)
 
 # Install oh-my-zsh, just for defaults and included plugins
