@@ -8,7 +8,7 @@ sudo apt-get install zsh nano htop -y
 chsh -s $(which zsh)
 
 # Install oh-my-zsh, just for defaults and included plugins
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" <<'EOF'
 
 # Install Zplug for additional plugins
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
