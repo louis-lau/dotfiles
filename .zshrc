@@ -1,9 +1,19 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+# If locale is emtpy set it to en_US
+if [ -z "$LC_ALL" ]; then
+  export LC_ALL=en_US.UTF-8
+fi
+if [ -z "$LANG" ]; then
+  export LANG=en_US.UTF-8
+fi
+
 # zplug plugins
 source ~/.zplug/init.zsh
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "zsh-users/zsh-completions"
+#zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
 zplug "Tarrasch/zsh-bd"
