@@ -8,6 +8,9 @@ fi
 if [ -z "$LANG" ]; then
   export LANG=en_US.UTF-8
 fi
+if [ $LANG = "C" ]; then
+  export LANG=en_US.UTF-8
+fi
 
 # zplug plugins
 source ~/.zplug/init.zsh
