@@ -30,7 +30,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 
 # Powerlevel9k options
 POWERLEVEL9K_DISABLE_RPROMPT=true
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context root_indicator dir dir_writable rbenv vcs)
 POWERLEVEL9K_MODE='nerdfont-complete'
 
