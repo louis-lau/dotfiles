@@ -1,5 +1,11 @@
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ~/.aliases
 
 # If locale is emtpy set it to en_US
 if [ -z "$LC_ALL" ]; then
@@ -15,9 +21,21 @@ if [ $LANG = "C" ]; then
   export LANG=en_US.UTF-8
 fi
 
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # zplug plugins
 source ~/.zplug/init.zsh
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 #zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
@@ -27,12 +45,20 @@ zplug "zuxfoucault/colored-man-pages_mod"
 zplug "hlissner/zsh-autopair", defer:2
 zplug "robertzk/send.zsh"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "trapd00r/LS_COLORS"
 
-# Powerlevel9k options
-POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context root_indicator dir dir_writable rbenv vcs)
-POWERLEVEL9K_MODE='nerdfont-complete'
+# oh-my-zsh ##############################################
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/github", from:oh-my-zsh
+zplug "plugins/heroku", from:oh-my-zsh
+zplug "plugins/lein", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/compleat", from:oh-my-zsh
+zplug "plugins/ssh-agent", from:oh-my-zsh
+# Node Plugins
+zplug "plugins/node", from:oh-my-zsh
+# Python Plugins
+zplug "plugins/python", from:oh-my-zsh
 
 # Alias-tips options
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="  "
@@ -48,16 +74,5 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# Specify oh-my-zsh plugins
-plugins=(
-  git
-  command-not-found
-  sudo
-)
-
-source $ZSH/oh-my-zsh.sh
-
-### Bashhub.com Installation
-if [ -f ~/.bashhub/bashhub.zsh ]; then
-    source ~/.bashhub/bashhub.zsh
-fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
