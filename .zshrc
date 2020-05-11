@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ -f ${HOME}/.zplug/init.zsh ]; then
+    source ${HOME}/.zplug/init.zsh
+fi
+
 source ~/.aliases
 
 # If locale is emtpy set it to en_US
@@ -37,7 +41,6 @@ source ~/.zplug/init.zsh
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
-#zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
 zplug "Tarrasch/zsh-bd"
@@ -54,7 +57,7 @@ zplug "plugins/heroku", from:oh-my-zsh
 zplug "plugins/lein", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/compleat", from:oh-my-zsh
-zplug "plugins/ssh-agent", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
 # Node Plugins
 zplug "plugins/node", from:oh-my-zsh
 # Python Plugins
