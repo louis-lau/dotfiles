@@ -49,6 +49,7 @@ zplug "hlissner/zsh-autopair", defer:2
 zplug "robertzk/send.zsh"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "trapd00r/LS_COLORS"
+zplug "jreese/zsh-titles"
 
 # oh-my-zsh ##############################################
 zplug "plugins/git", from:oh-my-zsh
@@ -58,10 +59,10 @@ zplug "plugins/lein", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/compleat", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
-# Node Plugins
 zplug "plugins/node", from:oh-my-zsh
-# Python Plugins
 zplug "plugins/python", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
 
 # Alias-tips options
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="  "
