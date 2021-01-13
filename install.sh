@@ -12,10 +12,11 @@ fi
 # Install Zplug for additional plugins
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 
+exec $(which zsh)
+
 # Symlink dotfiles
 ln -s $scriptPath/.zshrc ~/.zshrc
 ln -s $scriptPath/.aliases ~/.aliases
-ln -s $scriptPath/.p10k.zsh ~/.p10k.zsh
 
 # Reload shell
 exec $(which zsh)
