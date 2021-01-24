@@ -34,37 +34,34 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
 # zplug plugins
 source ~/.zplug/init.zsh
 zplug "romkatv/powerlevel10k", as:theme, depth:1
-zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
 zplug "Tarrasch/zsh-bd"
 zplug "zuxfoucault/colored-man-pages_mod"
-zplug "hlissner/zsh-autopair", defer:2
-zplug "robertzk/send.zsh"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "trapd00r/LS_COLORS"
 zplug "jreese/zsh-titles"
 
 # oh-my-zsh ##############################################
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/github", from:oh-my-zsh
-zplug "plugins/heroku", from:oh-my-zsh
-zplug "plugins/lein", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/compleat", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/python", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/history-substring-search", from:oh-my-zsh
 
-# Alias-tips options
+# Plugin options before load
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="  "
 export ZSH_PLUGINS_ALIAS_TIPS_EXCLUDES="_"
 
@@ -79,11 +76,9 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  zplug install
 fi
+
 # Then, source plugins and add commands to $PATH
 zplug load
 
