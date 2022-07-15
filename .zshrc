@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 if [ -f ${HOME}/.zplug/init.zsh ]; then
     source ${HOME}/.zplug/init.zsh
 fi
@@ -38,49 +31,82 @@ setopt    appendhistory     #Append history to the history file (no overwriting)
 setopt    sharehistory      #Share history across terminals
 setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
-# zplug plugins
-source ~/.zplug/init.zsh
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "djui/alias-tips"
-zplug "Tarrasch/zsh-bd"
-zplug "zuxfoucault/colored-man-pages_mod"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "jreese/zsh-titles"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
 
-# oh-my-zsh ##############################################
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/github", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/node", from:oh-my-zsh
-zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/python", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
-zplug "plugins/docker-compose", from:oh-my-zsh
-zplug "plugins/history-substring-search", from:oh-my-zsh
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
 
 # Plugin options before load
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="  "
 export ZSH_PLUGINS_ALIAS_TIPS_EXCLUDES="_"
 
-# Npm shit
-NPM_PACKAGES="${HOME}/.npm-packages"
+# plugins
 
-export PATH="$PATH:$NPM_PACKAGES/bin"
+# HISTORY SUBSTRING SEARCHING
+zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey "$terminfo[kcud1]" history-substring-search-down'
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
-# Preserve MANPATH if you already defined it somewhere in your config.
-# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  zplug install
-fi
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
 
-# Then, source plugins and add commands to $PATH
-zplug load
+zinit ice wait="0" lucid
+zinit light zsh-users/zsh-completions
+
+zinit ice wait="0" lucid
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait="0" lucid
+zinit light djui/alias-tips
+
+zinit ice wait="0" lucid
+zinit light zuxfoucault/colored-man-pages_mod
+
+zinit ice wait="0" lucid
+zinit light zsh-users/zsh-syntax-highlighting
+
+
+# oh-my-zsh ##############################################
+zinit ice wait="0" lucid
+zinit snippet OMZP::git
+zinit ice wait="0" lucid
+zinit snippet OMZP::github
+zinit ice wait="0" lucid
+zinit snippet OMZP::command-not-found
+zinit ice wait="0" lucid
+zinit snippet OMZP::sudo
+zinit ice wait="0" lucid
+zinit snippet OMZP::node
+zinit ice wait="0" lucid
+zinit snippet OMZP::npm
+zinit ice wait="0" lucid
+zinit snippet OMZP::python
+zinit ice wait="0" lucid
+zinit snippet OMZP::docker
+zinit ice wait="0" lucid
+zinit snippet OMZP::docker-compose
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
 [[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
