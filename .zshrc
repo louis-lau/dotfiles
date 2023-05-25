@@ -68,39 +68,32 @@ bindkey -M vicmd 'j' history-substring-search-down
 zinit ice depth"1" # git clone depth
 zinit light romkatv/powerlevel10k
 
-zinit ice wait="0" lucid
+zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
-zinit ice wait="0" lucid atload="_zsh_autosuggest_start"
+zinit ice wait lucid atload="_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-zinit ice wait="0" lucid
+zinit ice wait lucid
 zinit light djui/alias-tips
 
-zinit ice wait="0" lucid
+zinit ice wait lucid
 zinit light zuxfoucault/colored-man-pages_mod
 
-zinit ice wait="0c" lucid atinit="zpcompinit;zpcdreplay"
+zinit ice wait lucid atinit="zpcompinit;zpcdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 
 # oh-my-zsh ##############################################
-zinit ice wait="0" lucid
-zinit snippet OMZP::git
-zinit ice wait="0" lucid
-zinit snippet OMZP::github
-zinit ice wait="0" lucid
-zinit snippet OMZP::command-not-found
-zinit ice wait="0" lucid
-zinit snippet OMZP::sudo
-zinit ice wait="0" lucid
-zinit snippet OMZP::node
-zinit ice wait="0" lucid
-zinit snippet OMZP::npm
-zinit ice wait="0" lucid
-zinit snippet OMZP::python
-zinit ice wait="0" lucid
-zinit snippet OMZP::docker
+zinit ice wait lucid for \
+  OMZP::git \
+  OMZP::github \
+  OMZP::command-not-found \
+  OMZP::sudo \
+  OMZP::node \
+  OMZP::npm \
+  OMZP::python \
+  OMZP::docker \
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
 [[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
