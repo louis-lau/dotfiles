@@ -71,7 +71,7 @@ zinit light romkatv/powerlevel10k
 zinit ice wait="0" lucid
 zinit light zsh-users/zsh-completions
 
-zinit ice wait="0" lucid
+zinit ice wait="0" lucid atload="_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait="0" lucid
@@ -80,8 +80,8 @@ zinit light djui/alias-tips
 zinit ice wait="0" lucid
 zinit light zuxfoucault/colored-man-pages_mod
 
-zinit ice wait="0" lucid
-zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait="0c" lucid atinit="zpcompinit;zpcdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 
 # oh-my-zsh ##############################################
@@ -101,8 +101,6 @@ zinit ice wait="0" lucid
 zinit snippet OMZP::python
 zinit ice wait="0" lucid
 zinit snippet OMZP::docker
-zinit ice wait="0" lucid
-zinit snippet OMZP::docker-compose
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
 [[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
