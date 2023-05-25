@@ -1,7 +1,3 @@
-if [ -f ${HOME}/.zplug/init.zsh ]; then
-    source ${HOME}/.zplug/init.zsh
-fi
-
 source ~/.aliases
 
 # If locale is emtpy set it to en_US
