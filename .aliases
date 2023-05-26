@@ -1,5 +1,8 @@
 alias docker-compose='docker compose'
 alias ls='ls --color=auto'
 alias l='ls --color=auto -lah'
+alias dcup='docker compose up'
+alias dcupd='docker compose up -d'
+alias dce='docker compose exec'
 alias ctop='docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest'
 alias ssh-retry='ssh -o ConnectTimeout=1 -o ServerAliveInterval=1'
